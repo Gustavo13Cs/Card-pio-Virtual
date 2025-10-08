@@ -1,0 +1,88 @@
+/* ---- VARIÁVEIS GLOBAIS (RAIZ) ---- */
+:root {
+    --rosa-claro: #FCE4EC; /* Fundo e detalhes */
+    --rosa-escuro: #E91E63; /* Corações e títulos */
+    --marrom-escuro: #5D4037; /* Textos principais */
+    --marrom-medio: #795548; /* Botões */
+    --branco: #FFFFFF;
+    --sombra: rgba(0, 0, 0, 0.1);
+
+    --fonte-titulos: 'Pacifico', cursive;
+    --fonte-corpo: 'Poppins', sans-serif;
+}
+
+/* ---- RESET BÁSICO E ESTILOS GLOBAIS ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte-corpo);
+    background-color: var(--rosa-claro);
+    color: var(--marrom-escuro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    /* Para o fundo texturizado, podemos adicionar depois: */
+    /* background-image: url('sua-textura.png'); */
+}
+
+/* ---- CONTAINER PRINCIPAL ---- */
+.cardapio-container {
+    width: 100%;
+    max-width: 500px; /* Largura máxima do cardápio */
+    background-color: var(--branco);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--sombra);
+    padding: 25px;
+    border: 2px solid var(--marrom-escuro);
+}
+
+/* ---- ESTILOS DE TEXTO ---- */
+h1, h2 {
+    font-family: var(--fonte-titulos);
+    color: var(--rosa-escuro);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 2.2em;
+}
+
+.secao-escolha small {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+/* ---- LISTA DE OPÇÕES (BASE) ---- */
+.lista-opcoes {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.lista-opcoes li {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border: 2px solid var(--rosa-claro);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.lista-opcoes li:hover {
+    transform: scale(1.03);
+    border-color: var(--rosa-escuro);
+}
+
+.lista-opcoes li.selecionado {
+    background-color: var(--rosa-claro);
+    border-color: var(--rosa-escuro);
+    font-weight: 600;
+}

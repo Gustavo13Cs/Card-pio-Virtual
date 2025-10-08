@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borcelle Bolos - Cardápio Interativo</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="cardapio-container">
+
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🍥</span>
+                <h1>Cardápio de Bolos</h1>
+            </div>
+            <div class="info-contato">
+                <span>@grandesite</span>
+                <span>(12) 3456-7890</span>
+                <span>Rua Alegre, 123</span>
+            </div>
+        </header>
+
+        <main>
+            <section id="tamanhos" class="secao-escolha">
+                <h2>Tamanhos</h2>
+                <ul class="lista-opcoes" data-max-escolhas="1">
+                    <li data-nome="Bolo 15cm (10 fatias)" data-preco="80.00">15 cm - Rende 10 fatias - <strong>R$ 80,00</strong></li>
+                    <li data-nome="Bolo 20cm (25 fatias)" data-preco="140.00">20 cm - Rende 25 fatias - <strong>R$ 140,00</strong></li>
+                    <li data-nome="Bolo 25cm (35 fatias)" data-preco="190.00">25 cm - Rende 35 fatias - <strong>R$ 190,00</strong></li>
+                    <li data-nome="Bolo 30cm (45 fatias)" data-preco="250.00">30 cm - Rende 45 fatias - <strong>R$ 250,00</strong></li>
+                </ul>
+            </section>
+            
+            <div class="opcoes-colunas">
+                <section id="recheios" class="secao-escolha">
+                    <h2>Recheios</h2>
+                    <small>Escolha até 2 sabores</small>
+                    <ul class="lista-opcoes" data-max-escolhas="2">
+                        <li data-nome="Coco" data-preco="0">Coco</li>
+                        <li data-nome="Morango" data-preco="0">Morango</li>
+                        <li data-nome="Brigadeiro" data-preco="0">Brigadeiro</li>
+                        <li data-nome="Chocolate" data-preco="0">Chocolate</li>
+                        <li data-nome="Doce de leite" data-preco="0">Doce de leite</li>
+                        <li data-nome="Brigadeiro trufado" data-preco="0">Brigadeiro trufado</li>
+                    </ul>
+                </section>
+                
+                <section id="massas" class="secao-escolha">
+                    <h2>Massas</h2>
+                    <small>Escolha 1 sabor</small>
+                    <ul class="lista-opcoes" data-max-escolhas="1">
+                        <li data-nome="Chocolate" data-preco="0">Chocolate</li>
+                        <li data-nome="Amanteigada" data-preco="0">Amanteigada</li>
+                        <li data-nome="Baunilha" data-preco="0">Baunilha</li>
+                        <li data-nome="Amendoim" data-preco="0">Amendoim</li>
+                        <li data-nome="Limão" data-preco="0">Limão</li>
+                    </ul>
+                </section>
+            </div>
+            
+            <section id="decoracao" class="secao-escolha">
+                <h2>Decoração <small>(Opcional)</small></h2>
+                <ul class="lista-opcoes" data-max-escolhas="1">
+                    <li data-nome="Morangos" data-preco="9.90">Morangos - <strong>R$ 9,90</strong></li>
+                    <li data-nome="Topo de Bolo" data-preco="29.90">Topo de Bolo - <strong>R$ 29,90</strong></li>
+                    <li data-nome="Brigadeiros" data-preco="20.00">Brigadeiros - <strong>R$ 20,00</strong></li>
+                    <li data-nome="Geleia Natural" data-preco="25.00">Geleia Natural - <strong>R$ 25,00</strong></li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <div id="resumo-pedido">
+                <h3>Resumo do Pedido</h3>
+                <div class="total-container">
+                    <span>Total:</span>
+                    <span id="preco-total">R$ 0,00</span>
+                </div>
+            </div>
+            <button id="btn-whatsapp">Finalizar Pedido no WhatsApp</button>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
