@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borcelle Bolos - Cardápio Interativo</title>
+    <title>Cintia Trufados - Cardápio</title>
     
     <link rel="stylesheet" href="style.css">
     
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -17,13 +19,15 @@
 
         <header>
             <div class="logo">
-                <span class="logo-icon">🍥</span>
-                <h1>Cardápio de Bolos</h1>
+                <img src="img/logo.png" alt="Logo Cintia Trufados" width="180"> 
             </div>
             <div class="info-contato">
-                <span>@grandesite</span>
-                <span>(12) 3456-7890</span>
-                <span>Rua Alegre, 123</span>
+                <a href="https://www.instagram.com/cintiatrufados/" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                    @cintiatrufados
+                </a>
+                <span>Rua Manuel Bairros De Lima 85</span>
+                <span>(79) 99979-8705</span>
             </div>
         </header>
 
@@ -79,12 +83,14 @@
         <footer>
             <div id="resumo-pedido">
                 <h3>Resumo do Pedido</h3>
-                <div class="total-container">
-                    <span>Total:</span>
+                <div class="total-linha">
+                    <span>Total</span>
                     <span id="preco-total">R$ 0,00</span>
                 </div>
             </div>
-            <button id="btn-whatsapp">Finalizar Pedido no WhatsApp</button>
+            <button id="btn-whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido
+            </button>
         </footer>
 
     </div>
