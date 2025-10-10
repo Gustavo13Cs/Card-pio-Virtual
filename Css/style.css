@@ -42,13 +42,20 @@ body {
 /* ---- ESTILOS DE TEXTO ---- */
 h1, h2 {
     font-family: var(--fonte-titulos);
-    color: var(--roxo-principal); /* CORRIGIDO */
+    color: var(--roxo-principal); 
     text-align: center;
     margin-bottom: 10px;
 }
 
 h2 {
     font-size: 2.2em;
+}
+
+h5 {
+    font-size: 0.7em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--cinza-escuro); 
 }
 
 .secao-escolha small {
