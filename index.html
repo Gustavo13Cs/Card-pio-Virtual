@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cintia Trufados - Cardápio</title>
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/bolos.css">
     
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
@@ -26,56 +30,108 @@
                     <i class="fa-brands fa-instagram"></i>
                     @cintiatrufados
                 </a>
-                <span>Rua Manuel Bairros De Lima 85</span>
+                <span>Loteamento Laura Costa Rua A 322</span>
                 <span>(79) 99979-8705</span>
             </div>
         </header>
 
         <main>
-            <section id="tamanhos" class="secao-escolha">
-                <h2>Tamanhos</h2>
-                <ul class="lista-opcoes" data-max-escolhas="1">
-                    <li data-nome="Bolo 15cm (10 fatias)" data-preco="80.00">15 cm - Rende 10 fatias - <strong>R$ 80,00</strong></li>
-                    <li data-nome="Bolo 20cm (25 fatias)" data-preco="140.00">20 cm - Rende 25 fatias - <strong>R$ 140,00</strong></li>
-                    <li data-nome="Bolo 25cm (35 fatias)" data-preco="190.00">25 cm - Rende 35 fatias - <strong>R$ 190,00</strong></li>
-                    <li data-nome="Bolo 30cm (45 fatias)" data-preco="250.00">30 cm - Rende 45 fatias - <strong>R$ 250,00</strong></li>
+            <section id="bolos" class="secao-escolha">
+                <h2>Bolos</h2>
+                <div class="bolo-configurator">
+
+                    <h3>1. Escolha o Tamanho:</h3>
+                    <div class="choice-group">
+                        <label>
+                            <input type="radio" name="tamanho-bolo" value="190.00" data-nome="Bolo 20cm">
+                            20cm (rende 20 a 22 fatias) - <strong>R$ 190,00</strong>
+                        </label>
+                        <label>
+                            <input type="radio" name="tamanho-bolo" value="150.00" data-nome="Bolo 15cm">
+                            15cm (rende 12 a 15 fatias) - <strong>R$ 150,00</strong>
+                        </label>
+                    </div>
+
+                    <h3>2. Escolha a Massa (1 opção):</h3>
+                    <div class="choice-group">
+                        <label><input type="radio" name="massa-bolo" data-nome="Amanteigada"> Amanteigada</label>
+                        <label><input type="radio" name="massa-bolo" data-nome="Branca"> Branca</label>
+                        <label><input type="radio" name="massa-bolo" data-nome="Chocolate"> Chocolate</label>
+                        <label><input type="radio" name="massa-bolo" data-nome="Red Velvet"> Red Velvet</label>
+                    </div>
+
+                    <h3>3. Escolha os Recheios (até 2 sabores):</h3>
+                    <div class="choice-group recheios-group">
+                        <label><input type="checkbox" name="recheio-bolo" data-nome="Chocolate"> Chocolate</label>
+                        <label><input type="checkbox" name="recheio-bolo" data-nome="Maracujá"> Maracujá</label>
+                        <label><input type="checkbox" name="recheio-bolo" data-nome="Ninho"> Ninho</label>
+                        <label><input type="checkbox" name="recheio-bolo" data-nome="Nutella"> Nutella</label>
+                        <label><input type="checkbox" name="recheio-bolo" data-nome="Coco"> Coco</label>
+                        <label><input type="checkbox" name="recheio-bolo" data-nome="Doce de Leite c/ Ameixa"> Doce de Leite c/ Ameixa</label>
+                        <label><input type="checkbox" name="recheio-bolo" data-nome="Café"> Café</label>
+                    </div>
+
+                    <h3>4. Adicionais (opcional):</h3>
+                    <div class="choice-group">
+                        <label>
+                            <input type="checkbox" name="adicional-bolo" value="10.00" data-nome="Morango">
+                            Morango - <strong>R$ 10,00</strong>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="adicional-bolo" value="10.00" data-nome="Geleia de Morango">
+                            Geleia de morango - <strong>R$ 10,00</strong>
+                        </label>
+                    </div>
+
+                    <button id="btn-adicionar-bolo" class="btn-adicionar">Adicionar Bolo ao Pedido</button>
+                </div>
+            </section>
+
+            <section id="cones" class="secao-escolha">
+                <h2>Cones Trufados</h2>
+                <ul class="lista-opcoes">
+                    <li data-nome="Cone de Ninho com Nutella" data-preco="12.00">Cone de Ninho com Nutella - <strong>R$ 12,00</strong></li>
+                    <li data-nome="Cone de Morango" data-preco="10.00">Cone de Morango - <strong>R$ 10,00</strong></li>
                 </ul>
             </section>
-            
-            <div class="opcoes-colunas">
-                <section id="recheios" class="secao-escolha">
-                    <h2>Recheios</h2>
-                    <small>Escolha até 2 sabores</small>
-                    <ul class="lista-opcoes" data-max-escolhas="2">
-                        <li data-nome="Coco" data-preco="0">Coco</li>
-                        <li data-nome="Morango" data-preco="0">Morango</li>
-                        <li data-nome="Brigadeiro" data-preco="0">Brigadeiro</li>
-                        <li data-nome="Chocolate" data-preco="0">Chocolate</li>
-                        <li data-nome="Doce de leite" data-preco="0">Doce de leite</li>
-                        <li data-nome="Brigadeiro trufado" data-preco="0">Brigadeiro trufado</li>
-                    </ul>
-                </section>
-                
-                <section id="massas" class="secao-escolha">
-                    <h2>Massas</h2>
-                    <small>Escolha 1 sabor</small>
-                    <ul class="lista-opcoes" data-max-escolhas="1">
-                        <li data-nome="Chocolate" data-preco="0">Chocolate</li>
-                        <li data-nome="Amanteigada" data-preco="0">Amanteigada</li>
-                        <li data-nome="Baunilha" data-preco="0">Baunilha</li>
-                        <li data-nome="Amendoim" data-preco="0">Amendoim</li>
-                        <li data-nome="Limão" data-preco="0">Limão</li>
-                    </ul>
-                </section>
-            </div>
-            
-            <section id="decoracao" class="secao-escolha">
-                <h2>Decoração <small>(Opcional)</small></h2>
-                <ul class="lista-opcoes" data-max-escolhas="1">
-                    <li data-nome="Morangos" data-preco="9.90">Morangos - <strong>R$ 9,90</strong></li>
-                    <li data-nome="Topo de Bolo" data-preco="29.90">Topo de Bolo - <strong>R$ 29,90</strong></li>
-                    <li data-nome="Brigadeiros" data-preco="20.00">Brigadeiros - <strong>R$ 20,00</strong></li>
-                    <li data-nome="Geleia Natural" data-preco="25.00">Geleia Natural - <strong>R$ 25,00</strong></li>
+
+            <section id="fatias" class="secao-escolha">
+                <h2>Fatia de Torta</h2>
+                <ul class="lista-opcoes">
+                    <li data-nome="Fatia Torta Alemã" data-preco="15.00">Fatia Torta Alemã - <strong>R$ 15,00</strong></li>
+                    <li data-nome="Fatia Red Velvet" data-preco="18.00">Fatia Red Velvet - <strong>R$ 18,00</strong></li>
+                </ul>
+            </section>
+
+            <section id="geladinhos" class="secao-escolha">
+                <h2>Geladinho Gourmet</h2>
+                <ul class="lista-opcoes">
+                    <li data-nome="Geladinho de Pistache" data-preco="8.00">Geladinho de Pistache - <strong>R$ 8,00</strong></li>
+                    <li data-nome="Geladinho de Doce de Leite" data-preco="7.00">Geladinho de Doce de Leite - <strong>R$ 7,00</strong></li>
+                </ul>
+            </section>
+
+            <section id="doces" class="secao-escolha">
+                <h2>Doces Tradicionais</h2>
+                <ul class="lista-opcoes">
+                    <li data-nome="Brigadeiro (unidade)" data-preco="3.50">Brigadeiro (unidade) - <strong>R$ 3,50</strong></li>
+                    <li data-nome="Beijinho (unidade)" data-preco="3.50">Beijinho (unidade) - <strong>R$ 3,50</strong></li>
+                </ul>
+            </section>
+
+            <section id="cupcakes" class="secao-escolha">
+                <h2>Cupcake</h2>
+                <ul class="lista-opcoes">
+                    <li data-nome="Cupcake de Chocolate" data-preco="9.00">Cupcake de Chocolate - <strong>R$ 9,00</strong></li>
+                    <li data-nome="Cupcake de Baunilha" data-preco="9.00">Cupcake de Baunilha - <strong>R$ 9,00</strong></li>
+                </ul>
+            </section>
+
+            <section id="trufas" class="secao-escolha">
+                <h2>Trufas</h2>
+                <ul class="lista-opcoes">
+                    <li data-nome="Trufa Tradicional" data-preco="4.00">Trufa Tradicional - <strong>R$ 4,00</strong></li>
+                    <li data-nome="Trufa de Maracujá" data-preco="4.50">Trufa de Maracujá - <strong>R$ 4,50</strong></li>
                 </ul>
             </section>
         </main>
@@ -95,6 +151,7 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/bolos.js"></script>
 </body>
 </html>

@@ -1,0 +1,75 @@
+/* style.css */
+
+/* ---- ESTILOS DO CONFIGURADOR DE BOLO ---- */
+
+.bolo-configurator {
+    background-color: #f9f9f9;
+    border: 2px solid var(--lavanda-claro);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.bolo-configurator h3 {
+    font-family: var(--fonte-corpo);
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--cinza-escuro);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--lavanda-claro);
+}
+
+.bolo-configurator h3:first-child {
+    margin-top: 0;
+}
+
+.choice-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.choice-group label {
+    display: block;
+    background-color: var(--branco);
+    padding: 10px 15px;
+    border: 2px solid var(--lavanda-claro);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95em;
+}
+
+/* Estilo para quando a opção for selecionada */
+.choice-group input:checked + label, 
+.choice-group label:has(input:checked) { /* Novo seletor, funciona na maioria dos navegadores */
+    background-color: var(--lavanda-claro);
+    border-color: var(--roxo-principal);
+    font-weight: 600;
+}
+
+/* Esconde os inputs originais (radio/checkbox) */
+.choice-group input {
+    display: none;
+}
+
+.btn-adicionar {
+    width: 100%;
+    background-color: var(--roxo-principal);
+    color: var(--branco);
+    font-family: var(--fonte-corpo);
+    font-size: 1em;
+    font-weight: 700;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: transform 0.2s ease;
+}
+
+.btn-adicionar:hover {
+    transform: scale(1.02);
+}
