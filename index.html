@@ -35,123 +35,8 @@
             </div>
         </header>
 
-        <main>
-            <section id="bolos" class="secao-escolha">
-                <h2>Bolos</h2>
-                <h5>Pedido é confirmado apenas com 50% do valor pago.</h5>
-                <div class="bolo-configurator">
-
-                    <h3>1. Escolha o Tamanho:</h3>
-                    <div class="choice-group">
-                        <label>
-                            <input type="radio" name="tamanho-bolo" value="190.00" data-nome="Bolo 20cm">
-                            20cm (rende 20 a 22 fatias) - <strong>R$ 190,00</strong>
-                        </label>
-                        <label>
-                            <input type="radio" name="tamanho-bolo" value="150.00" data-nome="Bolo 15cm">
-                            15cm (rende 12 a 15 fatias) - <strong>R$ 150,00</strong>
-                        </label>
-                    </div>
-
-                    <h3>2. Escolha a Massa (1 opção):</h3>
-                    <div class="choice-group">
-                        <label><input type="radio" name="massa-bolo" data-nome="Amanteigada"> Amanteigada</label>
-                        <label><input type="radio" name="massa-bolo" data-nome="Branca"> Branca</label>
-                        <label><input type="radio" name="massa-bolo" data-nome="Chocolate"> Chocolate</label>
-                        <label><input type="radio" name="massa-bolo" data-nome="Red Velvet"> Red Velvet</label>
-                    </div>
-
-                    <h3>3. Escolha os Recheios (até 2 sabores):</h3>
-                    <div class="choice-group recheios-group">
-                        <label><input type="checkbox" name="recheio-bolo" data-nome="Chocolate"> Chocolate</label>
-                        <label><input type="checkbox" name="recheio-bolo" data-nome="Maracujá"> Maracujá</label>
-                        <label><input type="checkbox" name="recheio-bolo" data-nome="Ninho"> Ninho</label>
-                        <label><input type="checkbox" name="recheio-bolo" data-nome="Nutella"> Nutella</label>
-                        <label><input type="checkbox" name="recheio-bolo" data-nome="Coco"> Coco</label>
-                        <label><input type="checkbox" name="recheio-bolo" data-nome="Doce de Leite c/ Ameixa"> Doce de Leite c/ Ameixa</label>
-                        <label><input type="checkbox" name="recheio-bolo" data-nome="Café"> Café</label>
-                    </div>
-
-                    <h3>4. Adicionais (opcional):</h3>
-                    <div class="choice-group">
-                        <label>
-                            <input type="checkbox" name="adicional-bolo" value="10.00" data-nome="Morango">
-                            Morango - <strong>R$ 10,00</strong>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="adicional-bolo" value="10.00" data-nome="Geleia de Morango">
-                            Geleia de morango - <strong>R$ 10,00</strong>
-                        </label>
-                    </div>
-
-                    <button id="btn-adicionar-bolo" class="btn-adicionar">Adicionar Bolo ao Pedido</button>
-                </div>
-            </section>
-
-            <section id="cones" class="secao-escolha">
-                <h2>Cones Trufados -  R$ 4,50</h2>
-                <ul class="lista-opcoes">
-                    <li data-nome="Ninho c/Nutella">Ninho c/Nutella</li>
-                    <li data-nome="Beijinho">Beijinho</li>
-                    <li data-nome="Brigadeiro">Brigadeiro</li>
-                    <li data-nome="Maracaju c/Brigadeiro">Maracaju c/Brigadeiro</li>
-                    <li data-nome="Paçoca">Paçoca</li>
-                    <li data-nome="Ninho c/Geleia de morango">Ninho c/Geleia de morango</li>
-                </ul>
-            </section>
-
-            <section id="fatias" class="secao-escolha">
-                <h2>Fatia de Torta -  R$ 10,00</h2>
-                <ul class="lista-opcoes">
-                    <li data-nome="Morango c/Ninho">Morango c/Ninho</li>
-                    <li data-nome="Chocolate">Chocolate</li>
-                    <li data-nome="Ninho c/Geleia de morango">Ninho c/Geleia de morango</li>
-                    <li data-nome="Prestigio">Prestigio</li>
-                    <li data-nome="Maracuja c/Chocolate<">Maracuja c/Chocolate</li>
-                </ul>
-            </section>
-
-            <section id="geladinhos" class="secao-escolha">
-                <h2>Geladinho Gourmet - R$ 3,00</h2>
-                <ul class="lista-opcoes">
-                    <li data-nome="Ninho c/Nutella">Ninho c/Nutella</li>
-                    <li data-nome="Chocolate">Chocolate</li>
-                    <li data-nome="Ninho Trufado">Ninho Trufado</li>
-                    <li data-nome="Paçoca">Paçoca</li>
-                    <li data-nome="Mouse de Maracaju">Mouse de Maracaju</li>
-                    <li data-nome="Mouse de Limão">Mouse de Limão</li>
-                    <li data-nome="Morango">Morango</li>
-                </ul>
-            </section>
-
-            <section id="doces" class="secao-escolha">
-                <h2>Cento  De Doces - R$ 110,00</h2>
-                <ul class="lista-opcoes">
-                    <li data-nome="Brigadeiro Tradicional">Brigadeiro Tradicional</li>
-                    <li data-nome="Beijinho">Beijinho</li>
-                    <li data-nome="Paçoca">Paçoca</li>
-                    <li data-nome="Casadinho">Casadinho</li>
-                    <li data-nome="Ninho">Ninho</li>
-                    <li data-nome="Café">Café</li>
-                    <li data-nome="Olho de Sogra">Olho de Sogra</li>
-                    <li data-nome="Churros">Churros</li>
-                </ul>
-            </section>
-
-            <section id="cupcakes" class="secao-escolha">
-                <h2>Cupcake</h2>
-                <ul class="lista-opcoes">
-                    <li data-nome="Cupcake recheado com cobertura de chantily" data-preco="10.00">Cupcake recheado com cobertura de chantily - <strong>R$ 10,00</strong></li>
-                    <li data-nome="Personalizado" data-preco="15.00">Personalizado - <strong>R$ 15,00</strong></li>
-                </ul>
-            </section>
-
-            <section id="trufas" class="secao-escolha">
-                <h2>Trufas (cento) -  R$ 150,00</h2>
-                <ul class="lista-opcoes">
-                    <li data-nome="Trufas">Trufas</li>
-                </ul>
-            </section>
+        <main id="cardapio-main">
+            
         </main>
 
         <footer>
@@ -169,6 +54,10 @@
 
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    
     <script src="/js/script.js"></script>
 </body>
 </html>

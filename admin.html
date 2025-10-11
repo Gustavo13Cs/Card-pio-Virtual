@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Cíntia Trufados</title>
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="Css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Painel de Controle</h1>
+            <button id="logout-button">Sair <i class="fa-solid fa-right-from-bracket"></i></button>
+        </header>
+
+        <main class="admin-main">
+            <section class="admin-section">
+                <h2>Adicionar Nova Categoria</h2>
+                <form id="add-category-form" class="admin-form">
+                    <input type="text" id="category-name" placeholder="Nome da Categoria (ex: Brownies)" required>
+                    <input type="number" id="category-order" placeholder="Ordem de exibição (ex: 8)" required>
+                    <input type="number" id="category-price" step="0.01" placeholder="Preço Fixo (deixe em branco se os itens tiverem preços variados)">
+                    <button type="submit">Adicionar Categoria</button>
+                </form>
+            </section>
+
+            <section class="admin-section">
+                <h2>Categorias Existentes</h2>
+                <div id="category-list" class="category-list">
+                    <p>Carregando categorias...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

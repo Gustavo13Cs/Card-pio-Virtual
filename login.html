@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Admin Cíntia Trufados</title>
+    <link rel="stylesheet" href="Css/style.css"> <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        .login-container h1 { font-family: 'Pacifico', cursive; color: var(--roxo-principal); text-align: center; }
+        .login-container input { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid var(--lavanda-claro); border-radius: 8px; font-family: 'Poppins', sans-serif; }
+        .login-container button { width: 100%; background-color: var(--roxo-principal); color: white; border: none; padding: 15px; border-radius: 8px; font-size: 1.1em; font-weight: 700; cursor: pointer; }
+        .error-message { color: #cc5f5f; text-align: center; margin-top: 15px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Painel de Controle</h1>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="E-mail" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script> <script src="js/firebase-config.js"></script>
+    <script src="js/login.js"></script> </body>
+</html>
