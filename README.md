@@ -7,19 +7,11 @@
 
 Um projeto full-stack completo que oferece uma solução moderna e gerenciável para confeitarias e pequenos negócios, substituindo cardápios estáticos por uma experiência interativa e dinâmica para o cliente e um painel de controle poderoso para o administrador.
 
-**[➡️ Acesse a demonstração ao vivo AQUI!](https://SEU-LINK-AQUI.vercel.app/)**
+**[➡️ Acesse a demonstração ao vivo AQUI!](https://cardapiocintiatrufados.vercel.app/)**
+
 
 ---
 
-## 📸 Screenshots do Projeto
-
-*(Aqui você vai colocar os prints da sua aplicação. Exemplo: um print do cardápio no celular, um do painel de admin, etc.)*
-
-| Cardápio Público (Mobile) | Painel de Controle (Admin) |
-| :---: | :---: |
-| * coloque seu print aqui * | * coloque seu print aqui * |
-
----
 
 ## ✨ Funcionalidades Principais
 
