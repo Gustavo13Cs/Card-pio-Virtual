@@ -161,8 +161,48 @@ body {
     color: var(--purple-accent);
 }
 
-/* Seções da tela de Bolos */
+
 .sub-section {
     padding: 20px 25px;
     border-top: 1px solid var(--border-color);
+}
+
+
+@media (max-width: 600px) {
+
+
+    .admin-container {
+        padding: 10px;
+        margin: 10px auto;
+    }
+
+    .admin-section h2,
+    .admin-section h3,
+    .admin-form,
+    .sub-section {
+        padding: 15px;
+    }
+
+    .category-list-item,
+    .item-list-item {
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 0.95em;
+    }
+
+    .item-actions button,
+    .category-list-item div button {
+        margin-left: 2px;
+        padding: 5px;
+    }
+    
+    .admin-form {
+        flex-direction: column;
+        align-items: stretch; 
+    }
+
+    .admin-form button {
+        width: 100%;
+        justify-content: center;
+    }
 }
