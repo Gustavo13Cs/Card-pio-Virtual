@@ -97,5 +97,5 @@ Para rodar este projeto em sua máquina local, siga os passos abaixo:
 
 Projeto desenvolvido com muito café e código por **Gustavo Cunha**.
 
-* **GitHub:** [seu-usuario-aqui](https://github.com/seu-usuario-aqui)
-* **LinkedIn:** [seu-perfil-aqui](https://www.linkedin.com/in/seu-perfil-aqui/)
+* **GitHub:** [Gustavo13Cs](https://github.com/Gustavo13Cs/Gustavo13Cs)
+* **LinkedIn:** [Gustavo Cunha Santos](https://www.linkedin.com/in/gustavo-cunha-s/)
