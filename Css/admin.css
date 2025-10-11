@@ -212,6 +212,7 @@ body {
         text-align: right; 
     }
 
+    /* */
     .category-list-item span,
     .item-list-item span {
         word-break: break-word;
