@@ -1,13 +1,168 @@
-/* Css/admin.css */
-body { background-color: #f4f7f6; font-family: 'Poppins', sans-serif; }
-.admin-container { max-width: 900px; margin: 40px auto; padding: 20px; }
-.admin-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; padding-bottom: 20px; margin-bottom: 30px; }
-.admin-header h1 { font-family: 'Pacifico', cursive; color: var(--roxo-principal, #A086C4); margin: 0; }
-#logout-button { background-color: #cc5f5f; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: 600; }
-.admin-section { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 30px; }
-.admin-form { display: flex; gap: 15px; flex-wrap: wrap; }
-.admin-form input { flex: 1; min-width: 150px; padding: 12px; border: 2px solid #eee; border-radius: 8px; }
-.admin-form button { background-color: var(--roxo-principal, #A086C4); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; }
-.category-list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #eee; }
-.category-list-item:last-child { border-bottom: none; }
-.category-list-item span { font-weight: 600; }
+/* Css/admin.css (VERSÃO PAINEL DE CONTROLE) */
+
+:root {
+    --admin-bg: #f4f7f6;
+    --card-bg: #ffffff;
+    --border-color: #e9eef2;
+    --text-primary: #333;
+    --text-secondary: #777;
+    --purple-accent: var(--roxo-principal, #A086C4);
+    --btn-delete-color: #cc5f5f;
+    --btn-delete-hover: #a02c2c;
+    --btn-edit-color: #4c7faf;
+    --btn-edit-hover: #2c5f8f;
+}
+
+body {
+    background-color: var(--admin-bg);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary);
+}
+
+.admin-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--purple-accent);
+    margin: 0;
+}
+
+#logout-button {
+    background-color: var(--btn-delete-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+#logout-button:hover {
+    background-color: var(--btn-delete-hover);
+}
+
+/* O Estilo do "Card" */
+.admin-section {
+    background: var(--card-bg);
+    padding: 0; /* Removemos o padding antigo */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    margin-bottom: 30px;
+    overflow: hidden; /* Garante que os cantos arredondados funcionem */
+}
+
+.admin-section h2, .admin-section h3 {
+    margin: 0;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.2em;
+}
+
+.admin-form {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 25px;
+}
+
+.admin-form input {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-form input:focus {
+    outline: none;
+    border-color: var(--purple-accent);
+    box-shadow: 0 0 0 3px rgba(160, 134, 196, 0.2);
+}
+
+.admin-form button {
+    background-color: var(--purple-accent);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-form button:hover {
+    background-color: #896dae;
+}
+
+/* O Estilo da Lista de Itens */
+.item-list, .category-list {
+    padding: 10px 0;
+}
+
+.item-list-item, .category-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.item-list-item:last-child, .category-list-item:last-child {
+    border-bottom: none;
+}
+
+.item-list-item span, .category-list-item span {
+    font-weight: 500;
+}
+
+/* Botões de Ação (Ver, Editar, Excluir) */
+.item-actions button, .category-list-item div button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 8px;
+    font-size: 1.1em;
+    margin-left: 5px;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-ver-itens { color: var(--text-secondary); }
+.btn-editar, .btn-editar-categoria, .btn-editar-item-array, .btn-editar-item-subcolecao { color: var(--btn-edit-color); }
+.btn-excluir, .btn-excluir-categoria, .btn-excluir-item-array, .btn-excluir-item-subcolecao { color: var(--btn-delete-color); }
+
+.btn-ver-itens:hover { background-color: #f0f0f0; }
+.btn-editar:hover, .btn-editar-categoria:hover, .btn-editar-item-array:hover, .btn-editar-item-subcolecao:hover { background-color: #eaf1f6; }
+.btn-excluir:hover, .btn-excluir-categoria:hover, .btn-excluir-item-array:hover, .btn-excluir-item-subcolecao:hover { background-color: #fce8e8; }
+
+/* Botões de Voltar */
+#back-to-categories-btn, #back-to-categories-from-bolo-btn {
+    background: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 15px;
+    color: var(--purple-accent);
+}
+
+/* Seções da tela de Bolos */
+.sub-section {
+    padding: 20px 25px;
+    border-top: 1px solid var(--border-color);
+}

@@ -10,58 +10,71 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function gerarCardapio() {
-        try {
-            const snapshot = await db.collection('categorias').orderBy('ordem').get();
-            let htmlPromises = snapshot.docs.map(async (doc) => {
-                const categoria = doc.data();
-                let secaoHtml = '';
+    try {
+        const snapshot = await db.collection('categorias').orderBy('ordem').get();
+        let htmlPromises = snapshot.docs.map(async (doc) => {
+            const categoria = doc.data();
+            let secaoHtml = '';
 
-                if (categoria.nome === 'Bolos') {
-                    secaoHtml = await gerarHtmlBolos(doc.id);
-                } else {
-                    secaoHtml = `<section id="${doc.id}" class="secao-escolha">
-                                    <h2>${categoria.nome} ${categoria.precoFixo ? `- R$ ${categoria.precoFixo.toFixed(2).replace('.',',')}` : ''}</h2>
-                                 <ul class="lista-opcoes">`;
-                    if (categoria.itens) {
-                        categoria.itens.forEach(item => {
-                            if (typeof item === 'object' && item.nome && item.preco) {
-                                secaoHtml += `<li data-nome="${item.nome}" data-preco="${item.preco}">${item.nome} - <strong>R$ ${item.preco.toFixed(2).replace('.',',')}</strong></li>`;
-                            } else {
-                                secaoHtml += `<li data-nome="${item}">${item}</li>`;
-                            }
-                        });
-                    }
-                    secaoHtml += `</ul></section>`;
+            // CRIA O HTML DA IMAGEM SE O CAMPO 'imageUrl' EXISTIR
+            const imagemHtml = categoria.imageUrl ? `<img src="${categoria.imageUrl}" alt="${categoria.nome}" class="category-image">` : '';
+
+            if (categoria.nome === 'Bolos') {
+                secaoHtml = await gerarHtmlBolos(doc.id, imagemHtml);
+            } else {
+                secaoHtml = `
+                    <section id="${doc.id}" class="secao-escolha">
+                        ${imagemHtml}
+                        <h2>${categoria.nome} ${categoria.precoFixo ? `- R$ ${categoria.precoFixo.toFixed(2).replace('.',',')}` : ''}</h2>
+                        <ul class="lista-opcoes">`;
+                if (categoria.itens) {
+                    categoria.itens.forEach(item => {
+                        if (typeof item === 'object' && item.nome && item.preco) {
+                            secaoHtml += `<li data-nome="${item.nome}" data-preco="${item.preco}">${item.nome} - <strong>R$ ${item.preco.toFixed(2).replace('.',',')}</strong></li>`;
+                        } else {
+                            secaoHtml += `<li data-nome="${item}">${item}</li>`;
+                        }
+                    });
                 }
-                return secaoHtml;
-            });
+                secaoHtml += `</ul></section>`;
+            }
+            return secaoHtml;
+        });
 
-            const htmlSections = await Promise.all(htmlPromises);
-            cardapioContainer.innerHTML = htmlSections.join('');
+        const htmlSections = await Promise.all(htmlPromises);
+        cardapioContainer.innerHTML = htmlSections.join('');
 
-        } catch (error) {
-            console.error("Erro ao gerar o cardápio:", error);
-            cardapioContainer.innerHTML = '<p style="text-align: center; color: red;">Não foi possível carregar o cardápio. Verifique sua conexão ou tente novamente mais tarde.</p>';
-        }
+    } catch (error) {
+        console.error("Erro ao gerar o cardápio:", error);
+        cardapioContainer.innerHTML = '<p style="text-align: center; color: red;">Não foi possível carregar o cardápio.</p>';
     }
+}
 
-    async function gerarHtmlBolos(idCategoria) {
-        const tamanhosSnap = await db.collection('categorias').doc(idCategoria).collection('tamanhos').get();
-        const massasSnap = await db.collection('categorias').doc(idCategoria).collection('massas').get();
-        const recheiosSnap = await db.collection('categorias').doc(idCategoria).collection('recheios').get();
-        const adicionaisSnap = await db.collection('categorias').doc(idCategoria).collection('adicionais').get();
+async function gerarHtmlBolos(idCategoria, imagemHtml = '') {
+    const tamanhosSnap = await db.collection('categorias').doc(idCategoria).collection('tamanhos').get();
+    const massasSnap = await db.collection('categorias').doc(idCategoria).collection('massas').get();
+    const recheiosSnap = await db.collection('categorias').doc(idCategoria).collection('recheios').get();
+    const adicionaisSnap = await db.collection('categorias').doc(idCategoria).collection('adicionais').get();
 
-        let html = `<section id="${idCategoria}" class="secao-escolha"><h2>Bolos</h2><div class="bolo-configurator"><h3>1. Escolha o Tamanho:</h3><div class="choice-group">`;
-        tamanhosSnap.forEach(doc => { const t = doc.data(); html += `<label><input type="radio" name="tamanho-bolo" value="${t.preco}" data-nome="${t.nome}">${t.descricao} - <strong>R$ ${t.preco.toFixed(2).replace('.',',')}</strong></label>`; });
-        html += `</div><h3>2. Escolha a Massa (1 opção):</h3><div class="choice-group">`;
-        massasSnap.forEach(doc => { const m = doc.data(); html += `<label><input type="radio" name="massa-bolo" data-nome="${m.nome}"> ${m.nome}</label>`; });
-        html += `</div><h3>3. Escolha os Recheios (até 2 sabores):</h3><div class="choice-group recheios-group">`;
-        recheiosSnap.forEach(doc => { const r = doc.data(); html += `<label><input type="checkbox" name="recheio-bolo" data-nome="${r.nome}"> ${r.nome}</label>`; });
-        html += `</div><h3>4. Adicionais (opcional):</h3><div class="choice-group">`;
-        adicionaisSnap.forEach(doc => { const a = doc.data(); html += `<label><input type="checkbox" name="adicional-bolo" value="${a.preco}" data-nome="${a.nome}">${a.nome} - <strong>R$ ${a.preco.toFixed(2).replace('.',',')}</strong></label>`; });
-        html += `</div><button id="btn-adicionar-bolo" class="btn-adicionar">Adicionar Bolo ao Pedido</button></div></section>`;
-        return html;
-    }
+    let html = `
+        <section id="${idCategoria}" class="secao-escolha">
+            ${imagemHtml}
+            <h2>Bolos</h2>
+            <div class="bolo-configurator">`;
+
+
+    html += `<h3>1. Escolha o Tamanho:</h3><div class="choice-group">`;
+    tamanhosSnap.forEach(doc => { const t = doc.data(); html += `<label><input type="radio" name="tamanho-bolo" value="${t.preco}" data-nome="${t.nome}">${t.descricao} - <strong>R$ ${t.preco.toFixed(2).replace('.',',')}</strong></label>`; });
+    html += `</div><h3>2. Escolha a Massa (1 opção):</h3><div class="choice-group">`;
+    massasSnap.forEach(doc => { const m = doc.data(); html += `<label><input type="radio" name="massa-bolo" data-nome="${m.nome}"> ${m.nome}</label>`; });
+    html += `</div><h3>3. Escolha os Recheios (até 2 sabores):</h3><div class="choice-group recheios-group">`;
+    recheiosSnap.forEach(doc => { const r = doc.data(); html += `<label><input type="checkbox" name="recheio-bolo" data-nome="${r.nome}"> ${r.nome}</label>`; });
+    html += `</div><h3>4. Adicionais (opcional):</h3><div class="choice-group">`;
+    adicionaisSnap.forEach(doc => { const a = doc.data(); html += `<label><input type="checkbox" name="adicional-bolo" value="${a.preco}" data-nome="${a.nome}">${a.nome} - <strong>R$ ${a.preco.toFixed(2).replace('.',',')}</strong></label>`; });
+    html += `</div><button id="btn-adicionar-bolo" class="btn-adicionar">Adicionar Bolo ao Pedido</button></div></section>`;
+    
+    return html;
+}
 
     function inicializarLogicas() {
         initBoloConfigurator();
