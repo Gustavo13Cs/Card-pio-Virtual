@@ -204,3 +204,26 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     background-color: #f0f0f0; 
 }
+
+@media (max-width: 700px) {
+
+    .cardapio-container {
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column; 
+        align-items: center;    
+        gap: 20px;             
+    .info-contato {
+        align-items: center;    
+        text-align: center;    
+    }
+    .logo img {
+        width: 160px;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+}
