@@ -205,4 +205,15 @@ body {
         width: 100%;
         justify-content: center;
     }
+
+    .category-list-item .item-actions,
+    .item-list-item .item-actions {
+        min-width: 90px;
+        text-align: right; 
+    }
+
+    .category-list-item span,
+    .item-list-item span {
+        word-break: break-word;
+    }
 }
