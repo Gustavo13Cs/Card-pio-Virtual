@@ -22,10 +22,14 @@
             <div id="category-view">
                 <section class="admin-section">
                     <h2>Adicionar Nova Categoria</h2>
+
                     <form id="add-category-form" class="admin-form">
                         <input type="text" id="category-name" placeholder="Nome da Categoria (ex: Brownies)" required>
                         <input type="number" id="category-order" placeholder="Ordem de exibição (ex: 8)" required>
                         <input type="number" id="category-price" step="0.01" placeholder="Preço Fixo (opcional)">
+
+                        <input type="file" id="category-image" accept="image/*">
+                        
                         <button type="submit">Adicionar Categoria</button>
                     </form>
                 </section>

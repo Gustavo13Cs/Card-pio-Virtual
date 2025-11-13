@@ -10,6 +10,38 @@ firebase.auth().onAuthStateChanged((user) => {
 document.getElementById('logout-button').addEventListener('click', () => firebase.auth().signOut());
 let currentCategoryId = null;
 
+async function uploadImage(file) {
+    const apiKey = '0c6b31e45d7615526a1f754dc869acf8';
+
+    Swal.fire({
+        title: 'Enviando imagem...',
+        text: 'Aguarde, isso pode levar alguns segundos.',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+        const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+            method: 'POST',
+            body: formData
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            Swal.close();
+            return result.data.url;
+        } else {
+            throw new Error(result.error.message);
+        }
+    } catch (error) {
+        Swal.fire('Erro no Upload', `Falha ao enviar imagem: ${error.message}`, 'error');
+        return null;
+    }
+}
+
 function showView(viewId) {
     document.getElementById('category-view').style.display = 'none';
     document.getElementById('item-view').style.display = 'none';
@@ -100,20 +132,38 @@ async function renderBoloOptions(subCollectionName) {
 }
 
 function setupEventListeners() {
+
     document.getElementById('add-category-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const nome = e.target.elements['category-name'].value;
         const ordem = parseInt(e.target.elements['category-order'].value);
         const precoFixoInput = e.target.elements['category-price'].value;
+        const imageFile = e.target.elements['category-image'].files[0];
+
         const novaCategoria = { nome, ordem, itens: [] };
         if (precoFixoInput) {
             novaCategoria.precoFixo = parseFloat(precoFixoInput);
         }
-        await db.collection('categorias').add(novaCategoria);
-        e.target.reset();
-        displayCategories();
-        Toastify({ text: "Categoria adicionada!" }).showToast();
+
+        try {
+            if (imageFile) {
+                const imageUrl = await uploadImage(imageFile);
+                if (imageUrl) {
+                    novaCategoria.imageUrl = imageUrl;
+                } else {
+                    return;
+                }
+            }
+            await db.collection('categorias').add(novaCategoria);
+            Toastify({ text: "Categoria adicionada!" }).showToast();
+            e.target.reset();
+            displayCategories();
+        } catch (error) {
+            console.error("Erro ao adicionar categoria: ", error);
+            Toastify({ text: "Erro ao salvar categoria." }).showToast();
+        }
     });
+
 
     document.getElementById('add-item-form').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -208,10 +258,65 @@ function setupEventListeners() {
             const ref = db.collection('categorias').doc(id);
             const doc = await ref.get();
             const data = doc.data();
-            const { value: form } = await Swal.fire({ title: 'Editar Categoria', html: `<input id="swal-nome" class="swal2-input" value="${data.nome}"><input id="swal-ordem" type="number" class="swal2-input" value="${data.ordem}"><input id="swal-preco" type="number" step="0.01" class="swal2-input" placeholder="Preço Fixo (opcional)" value="${data.precoFixo || ''}">`, focusConfirm: false, showCancelButton: true, confirmButtonText: 'Salvar', preConfirm: () => ({ nome: document.getElementById('swal-nome').value, ordem: parseInt(document.getElementById('swal-ordem').value), precoFixo: parseFloat(document.getElementById('swal-preco').value) || null }) });
+
+            const currentImageHtml = data.imageUrl ?
+                `<img src="${data.imageUrl}" alt="Imagem Atual" style="width: 180px; height: 180px; object-fit: cover; border-radius: 8px; margin: 0 auto 20px; display: block; border: 3px solid #eee;">` :
+                '<p style="font-size: 0.9em; color: #777; text-align: center; margin-bottom: 15px;">Sem imagem atual.</p>';
+
+            const { value: form } = await Swal.fire({
+                title: 'Editar Categoria',
+                html: `
+                    ${currentImageHtml}
+                    <input id="swal-nome" class="swal2-input" value="${data.nome}">
+                    <input id="swal-ordem" type="number" class="swal2-input" value="${data.ordem}">
+                    <input id="swal-preco" type="number" step="0.01" class="swal2-input" placeholder="Preço Fixo (opcional)" value="${data.precoFixo || ''}">
+                    <label style="display:block; margin: 15px 0 5px; font-weight: 500; text-align: left;">Trocar/Adicionar Imagem:</label>
+                    <input id="swal-image" type="file" accept="image/*" class="swal2-file" style="display: block; margin: 0 auto;">
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                confirmButtonText: 'Salvar',
+                cancelButtonText: 'Cancelar',
+                preConfirm: async () => {
+                    
+                    // --- CORREÇÃO AQUI ---
+                    // 1. Lemos TODOS os valores dos inputs primeiro
+                    const nome = document.getElementById('swal-nome').value;
+                    const ordem = parseInt(document.getElementById('swal-ordem').value);
+                    const precoInput = document.getElementById('swal-preco').value;
+                    const newImageFile = document.getElementById('swal-image').files[0];
+                    
+                    let newImageUrl = data.imageUrl || null;
+
+                    // 2. FAZEMOS o await do upload
+                    if (newImageFile) {
+                        const uploadedUrl = await uploadImage(newImageFile);
+                        if (uploadedUrl) {
+                            newImageUrl = uploadedUrl;
+                        } else {
+                            Swal.showValidationMessage('Falha no upload da nova imagem.');
+                            return null;
+                        }
+                    }
+
+                    // 3. Usamos as variáveis que lemos no início
+                    const precoValor = parseFloat(precoInput);
+                    
+                    return {
+                        nome: nome,
+                        ordem: ordem,
+                        precoFixo: isNaN(precoValor) ? null : precoValor,
+                        imageUrl: newImageUrl
+                    };
+                }
+            });
+            
             if (form) {
                 if (form.precoFixo === null) {
                     form.precoFixo = firebase.firestore.FieldValue.delete();
+                }
+                if (form.imageUrl === null) {
+                    form.imageUrl = firebase.firestore.FieldValue.delete();
                 }
                 await ref.update(form);
                 displayCategories();
